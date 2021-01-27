@@ -13,8 +13,6 @@ const GoalInput = props => {
     setEnteredGoal('');
   }
 
-  
-  
   return ( 
     <Modal visible={props.visible} animationType='slide'>
       <View style={styles.inputButtonContainer}>
@@ -22,18 +20,20 @@ const GoalInput = props => {
           placeholder='Enter a course goal...' 
           style={styles.input}
           onChangeText={goalInputHandler} //updates on every keystroke
-          value={enteredGoal}
+          value={enteredGoal} //updates the value with the enteredGoal text
         />
         <View style={styles.buttonContainer}>
           <Button onPress={addGoalHandler} title='Add' />
+          {/*  onPress uses the local function addGoalHandler to pull in the entered goal and do a two-way bind back to the function addGoalHandler in App.js where it is entered into the courseGoals array of current goals */}
           <Button title='Clear' onPress={() => setEnteredGoal('')} />
+          {/* onPress calls on the useState function for setting the entered goal to return the input box back to an empty string */}
           <Button title='Cancel' color='red' onPress={props.onCancel} />
+          {/* onPress calls the onCancel function in App.js to return the modal back to false, which closes it */}
         </View>
       </View>
     </Modal>  
   );
 }
-
 
 const styles = StyleSheet.create({
   input: {
